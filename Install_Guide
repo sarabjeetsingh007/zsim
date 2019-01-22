@@ -1,4 +1,5 @@
 #Written by sarabjeet.singh@ashoka.edu.in
+#IMPORTANT: Due to Pin and Kernel dependency issues, ZSim only runs on Ubuntu 12
 
 1) Install the following dependencies:
 sudo apt-get install libelfg0-dev libhdf5-serial-dev scons libconfig++-dev build-essential gcc-multilib g++-multilib libboost-all-dev
@@ -17,4 +18,13 @@ export BOOST=/path/to/boost_libraries(under /usr/lib)
 export CC=/usr/bin/gcc
 export CXX=/usr/bin/g++
 
-4) At $ZSIMPATH, run scons -j16
+4) build ZSim: 
+cd $ZSIMPATH; scons -j16
+
+5) Test Run:
+./build/opt/zsim test/simple.cfg
+
+Documented Error:
+a) gm_create failed shmget: Invalid argument
+Solution: In $ZSIMPATH/src/zsim_harness.cpp, Replace 
+"uint32_t gmSize = conf.get<uint32_t>("sim.gmMBytes", (1<<10) /*default 1024MB*/);" by "uint32_t gmSize = 32;"
