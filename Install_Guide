@@ -9,6 +9,7 @@ wget -nv -c "http://software.intel.com/sites/landingpage/pintool/downloads/pin-2
 
 2a) Go to pin-2.14-71313-gcc.4.4.7-linux/source/tools/
 2b) make 
+2c) For Pin injection mode, run this command as root: echo 0 > /proc/sys/kernel/yama/ptrace_scope
 
 3) Set the environment:
 export PINPATH=/path/to/pin
